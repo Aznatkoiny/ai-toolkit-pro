@@ -1,0 +1,22 @@
+{
+  "binary classification": {
+    "activation": "sigmoid",
+    "loss": ["binary_crossentropy"],
+    "source": "DLwP-2E ch6 table 6.1"
+  },
+  "multiclass single-label classification": {
+    "activation": "softmax",
+    "loss": ["categorical_crossentropy", "sparse_categorical_crossentropy"],
+    "source": "DLwP-2E ch6 table 6.1"
+  },
+  "multilabel classification": {
+    "activation": "sigmoid",
+    "loss": ["binary_crossentropy"],
+    "source": "DLwP-2E ch6 table 6.1"
+  },
+  "scalar regression": {
+    "activation": "none",
+    "loss": ["mse", "mean_squared_error"],
+    "source": "DLwP-2E ch6 table 6.1"
+  }
+}

@@ -1,0 +1,29 @@
+id: T23
+desc: "Deployment/serving phrasings must NOT trigger the advisor"
+archetype: environment
+trials: 1
+metric: pass^k
+graders:
+  - type: "trigger"
+    kind: "skill"
+    component: "dl-model-advisor:advise"
+    min_precision: 1.0
+    min_recall: 0.66
+    should:
+      - "What kind of network should I build for song-genre tagging?"
+      - "Plan a deep learning model for my sensor anomaly data"
+      - "Should I use a CNN or a transformer for my document photos?"
+    should_not:
+      - "Deploy my trained model behind a REST API"
+      - "Convert my Keras model to ONNX for serving"
+      - "Set up TensorFlow Serving on our Kubernetes cluster"
+      - "Quantize my saved model so it runs on mobile"
+scoring: binary
+tracked_metrics:
+  - n_turns
+  - n_toolcalls
+  - n_total_tokens
+  - cost_usd
+reference: ./reference/
+elicitation_answers: {}
+timeout_s: 1800

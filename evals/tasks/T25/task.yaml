@@ -1,0 +1,37 @@
+id: T25
+desc: "Quant alpha-forecasting request routes through the qlib workflow concepts with unverified tier stated"
+archetype: environment
+trials: 3
+metric: pass^k
+graders:
+  - type: "workspace"
+    check: "file_exists"
+    path: "MODEL_PLAN.md"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "^Status: IN-SCOPE"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "Cited rule: .*\\[domains/quant-finance/alpha-forecasting-routing\\]"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "^Evidence: unverified"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "(?i)(qlib|point-in-time|walk-forward|\\bIC\\b)"
+  - type: "transcript"
+    check: "max_turns"
+    limit: 25
+scoring: binary
+tracked_metrics:
+  - n_turns
+  - n_toolcalls
+  - n_total_tokens
+  - cost_usd
+reference: ./reference/
+elicitation_answers: {}
+timeout_s: 600

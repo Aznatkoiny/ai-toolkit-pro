@@ -1,0 +1,64 @@
+{
+  "sandbox": {
+    "enabled": true,
+    "failIfUnavailable": true,
+    "allowUnsandboxedCommands": false,
+    "autoAllowBashIfSandboxed": true,
+    "network": {
+      "allowedDomains": [],
+      "strictAllowlist": true
+    },
+    "credentials": {
+      "envVars": [
+        {
+          "name": "ANTHROPIC_API_KEY",
+          "mode": "mask"
+        },
+        {
+          "name": "AWS_SECRET_ACCESS_KEY",
+          "mode": "deny"
+        },
+        {
+          "name": "AWS_SESSION_TOKEN",
+          "mode": "deny"
+        },
+        {
+          "name": "GITHUB_TOKEN",
+          "mode": "deny"
+        },
+        {
+          "name": "GH_TOKEN",
+          "mode": "deny"
+        },
+        {
+          "name": "OPENAI_API_KEY",
+          "mode": "deny"
+        }
+      ]
+    }
+  },
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Edit",
+      "Write",
+      "Bash"
+    ],
+    "deny": [
+      "WebFetch",
+      "WebSearch",
+      "Bash(git push:*)",
+      "Bash(gh:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(**/secrets/**)",
+      "Read(**/evals/tasks/**/reference/**)",
+      "Read(**/evals-holdout/**)"
+    ]
+  }
+}

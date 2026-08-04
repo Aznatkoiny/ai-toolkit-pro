@@ -1,0 +1,41 @@
+id: T02
+desc: "Route large-data image classification to a modern convnet trained from scratch"
+archetype: environment
+trials: 3
+metric: pass^k
+graders:
+  - type: "workspace"
+    check: "file_exists"
+    path: "MODEL_PLAN.md"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "^Status: IN-SCOPE"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "^Cited rule: DLwP-2E ch"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "(?i)(from scratch|residual|separable|batch normalization|Xception-style)"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "^Loss: (sparse_)?categorical_crossentropy"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "(?i)holdout"
+  - type: "transcript"
+    check: "max_turns"
+    limit: 25
+scoring: binary
+tracked_metrics:
+  - n_turns
+  - n_toolcalls
+  - n_total_tokens
+  - cost_usd
+reference: ./reference/
+elicitation_answers: {}
+timeout_s: 600

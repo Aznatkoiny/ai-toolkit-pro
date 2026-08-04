@@ -1,0 +1,41 @@
+id: T11
+desc: "Pairing exactness for multilabel plus pairing-table drift check"
+archetype: environment
+trials: 3
+metric: pass^k
+graders:
+  - type: "workspace"
+    check: "file_exists"
+    path: "MODEL_PLAN.md"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "^Status: IN-SCOPE"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "^Task type: multilabel classification"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "^Last-layer activation: sigmoid"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "^Loss: binary_crossentropy"
+  - type: "state_check"
+    cwd: "plugin_dir"
+    command: "python3 -c \"import json; a=json.load(open('skills/advise/data/pairings.json')); b=json.load(open('../evals/fixtures/pairings.json')); print('MATCH' if a==b else 'DRIFT')\""
+    expect: "MATCH"
+  - type: "transcript"
+    check: "max_turns"
+    limit: 25
+scoring: binary
+tracked_metrics:
+  - n_turns
+  - n_toolcalls
+  - n_total_tokens
+  - cost_usd
+reference: ./reference/
+elicitation_answers: {}
+timeout_s: 600

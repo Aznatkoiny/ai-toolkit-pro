@@ -1,0 +1,37 @@
+id: T27
+desc: "Zero-shot TSFM request answered with out-of-domain caveats and honest draft tier"
+archetype: environment
+trials: 3
+metric: pass^k
+graders:
+  - type: "workspace"
+    check: "file_exists"
+    path: "MODEL_PLAN.md"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "^Status: IN-SCOPE"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "Cited rule: .*\\[modern/tsfm-financial-forecasting\\]"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "^Evidence: unverified"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "(?i)(zero-shot|out-of-domain|domain gap|caveat|baseline)"
+  - type: "transcript"
+    check: "max_turns"
+    limit: 25
+scoring: binary
+tracked_metrics:
+  - n_turns
+  - n_toolcalls
+  - n_total_tokens
+  - cost_usd
+reference: ./reference/
+elicitation_answers: {}
+timeout_s: 600

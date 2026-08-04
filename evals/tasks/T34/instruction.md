@@ -1,0 +1,1 @@
+Infrastructure check (no agent session): CI-05 no self-promotion: T25-T27 reference plans pass the tier-aware hook. Deterministic probe via evals/ci/ci05_no_self_promotion.py against the knowledge catalog and plugin artifacts.

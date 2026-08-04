@@ -1,0 +1,1 @@
+Infrastructure check (no agent session): CI-04 freshness: no stable concept past stale_after undisclosed. Deterministic probe via evals/ci/ci04_freshness.py against the knowledge catalog and plugin artifacts.

@@ -1,0 +1,1 @@
+Infrastructure check (no agent session): CI-03 drift: pairings.json semantically matches the Task Pairing concepts. Deterministic probe via evals/ci/ci03_pairing_drift.py against the knowledge catalog and plugin artifacts.

@@ -1,0 +1,49 @@
+id: T10
+desc: "Route tiny-data binary classification to a small regularized Dense model with iterated K-fold"
+archetype: environment
+trials: 3
+metric: pass^k
+graders:
+  - type: "workspace"
+    check: "file_exists"
+    path: "MODEL_PLAN.md"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "^Status: IN-SCOPE"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "^Cited rule: DLwP-2E ch"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "(?i)dense"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "^Loss: binary_crossentropy"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "(?i)iterated k-fold"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "^Last-layer activation: sigmoid"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "(?i)(dropout|regulariz|L2|weight decay)"
+  - type: "transcript"
+    check: "max_turns"
+    limit: 25
+scoring: binary
+tracked_metrics:
+  - n_turns
+  - n_toolcalls
+  - n_total_tokens
+  - cost_usd
+reference: ./reference/
+elicitation_answers: {}
+timeout_s: 600

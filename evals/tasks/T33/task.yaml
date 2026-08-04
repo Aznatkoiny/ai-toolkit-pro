@@ -1,0 +1,20 @@
+id: T33
+desc: "CI-04 freshness: no stable concept past stale_after undisclosed"
+archetype: environment
+launch: none
+trials: 1
+metric: pass^k
+graders:
+  - type: "state_check"
+    cwd: "plugin_dir"
+    command: "python3 ../evals/ci/ci04_freshness.py"
+    expect: "OK"
+scoring: binary
+tracked_metrics:
+  - n_turns
+  - n_toolcalls
+  - n_total_tokens
+  - cost_usd
+reference: ./reference/
+elicitation_answers: {}
+timeout_s: 120

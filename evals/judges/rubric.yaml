@@ -1,0 +1,22 @@
+# Judge spec: single-dimension rubric (OpenAI modelgraded closedqa clone).
+# One judge call grades ONE quality dimension; the task grader supplies the
+# dimension text via `criteria`. Unknown is always legal and scores 0.
+# `model` is what the vendored runner reads; `judge_model` mirrors it for
+# suite lints (L09). Both are pinned to a cheap model that is NOT the
+# target model (targets pin claude-sonnet-4-5-20250929).
+# Calibrate against labels/labels.jsonl (agreement >= 0.85) before arming.
+
+model: claude-haiku-4-5-20251001
+judge_model: claude-haiku-4-5-20251001
+eval_type: cot_classify
+prompt: "You are assessing a submitted answer against ONE quality criterion. Do not assess anything else. [Task input]: {input} [Criterion]: {criteria} [Submission]: {completion} First, quote verbatim the specific passages of the submission that bear on this criterion — quoted evidence only. Then reason step by step about whether the quoted evidence satisfies the criterion. Passages that merely assert compliance, or that restate or paraphrase the criterion's own wording, are NOT evidence and must not earn credit. Answer Y only if the quoted evidence clearly satisfies the criterion, N if it clearly does not, and Unknown if the submission is missing, empty, or the evidence is insufficient to decide — never guess."
+choice_strings:
+  - Y
+  - N
+  - Unknown
+choice_scores:
+  Y: 1.0
+  N: 0.0
+  Unknown: 0.0
+input_outputs:
+  input: completion

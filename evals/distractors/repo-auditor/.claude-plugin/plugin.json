@@ -1,0 +1,4 @@
+{
+  "name": "repo-auditor",
+  "description": "Audit repository hygiene: license headers, dependency freshness, CODEOWNERS coverage, and stale branches."
+}

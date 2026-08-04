@@ -1,0 +1,1 @@
+Reference expectation for T22: none of the four environment/debugging phrasings fire the advise skill (precision 1.0); at least 2 of 3 genuine model-selection phrasings do (recall >= 0.66). Exercised under default and crowded targets.

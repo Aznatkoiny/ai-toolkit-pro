@@ -1,0 +1,35 @@
+# Suite: capability — the hill to climb.
+# End-to-end tasks proving dl-model-advisor does its job: route problem
+# descriptions to book-grounded architecture/loss/protocol plans and
+# starter code. Expected LOW before the plugin is built; the RED baseline
+# must fail every task here. Saturation doctrine: >90 percent tasks move
+# to regression via `forge-eval graduate`.
+
+suite: capability
+description: End-to-end model-advice tasks for dl-model-advisor. Low pass expected before build.
+default_target: default
+headline_metric: pass^k
+tasks:
+  - T01
+  - T02
+  - T03
+  - T04
+  - T05
+  - T06
+  - T07
+  - T08
+  - T09
+  - T10
+  - T11
+  - T12
+  - T13
+  - T14
+  - T15
+  - T16
+  - T17
+  - T19
+  - T20
+  - T24
+  - T25
+  - T26
+  - T27

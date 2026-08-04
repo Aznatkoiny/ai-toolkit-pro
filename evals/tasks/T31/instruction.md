@@ -1,0 +1,1 @@
+Infrastructure check (no agent session): CI-02 provenance: every stable concept carries a source resource. Deterministic probe via evals/ci/ci02_provenance.py against the knowledge catalog and plugin artifacts.

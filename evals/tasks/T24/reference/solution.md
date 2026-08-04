@@ -1,0 +1,1 @@
+For multi-label classification use a sigmoid activation on the final layer — one independent probability per label — with binary_crossentropy as the loss (per the book's ch6 activation/loss table). Softmax + categorical_crossentropy would wrongly force the labels to compete. No files were created, as requested.

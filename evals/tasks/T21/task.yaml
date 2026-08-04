@@ -1,0 +1,30 @@
+id: T21
+desc: "Core should-fire battery: model-selection phrasings activate the advise skill"
+archetype: environment
+trials: 1
+metric: pass^k
+graders:
+  - type: "trigger"
+    kind: "skill"
+    component: "dl-model-advisor:advise"
+    min_precision: 1.0
+    min_recall: 0.8
+    should:
+      - "What model should I use for classifying these 8,000 product images?"
+      - "Help me pick an architecture for my time-series forecasting problem"
+      - "I have 2,000 labeled support tickets — should I fine-tune a transformer or use something simpler?"
+      - "Set up a deep learning model plan for my tabular churn data"
+      - "Which loss function and last-layer activation should I use for multi-label classification?"
+    should_not:
+      - "Fix my CUDA and cuDNN installation"
+      - "Deploy my trained model behind a REST API"
+      - "Why does model.fit throw a shape mismatch error?"
+scoring: binary
+tracked_metrics:
+  - n_turns
+  - n_toolcalls
+  - n_total_tokens
+  - cost_usd
+reference: ./reference/
+elicitation_answers: {}
+timeout_s: 1800

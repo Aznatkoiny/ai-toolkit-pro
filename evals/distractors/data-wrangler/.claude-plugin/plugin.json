@@ -1,0 +1,4 @@
+{
+  "name": "data-wrangler",
+  "description": "Clean and reshape CSV/TSV files: fix delimiters and encodings, normalize headers, deduplicate rows, and pivot tables."
+}

@@ -1,0 +1,25 @@
+id: T24
+desc: "Narrow pairing question answered inline, book-attributed, with no unrequested files"
+archetype: conversational
+trials: 3
+metric: pass^k
+graders:
+  - type: "state_check"
+    command: "test ! -f MODEL_PLAN.md && test ! -f starter_model.py && echo CLEAN"
+    expect: "CLEAN"
+  - type: "judge"
+    spec: "judges/rubric.yaml"
+    dimension: "pairing_answer"
+    criteria: "The reply states ALL THREE of: (1) the final-layer activation for multi-label classification is sigmoid; (2) the loss function is binary_crossentropy; (3) the pairing is attributed to the knowledge source it comes from — Deep Learning with Python / DLwP-2E / the book's chapter 6 activation-and-loss table. A reply giving the correct pairing WITHOUT attributing it to the book fails this criterion."
+  - type: "transcript"
+    check: "max_turns"
+    limit: 8
+scoring: binary
+tracked_metrics:
+  - n_turns
+  - n_toolcalls
+  - n_total_tokens
+  - cost_usd
+reference: ./reference/
+elicitation_answers: {}
+timeout_s: 600

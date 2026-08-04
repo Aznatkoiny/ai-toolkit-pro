@@ -1,0 +1,42 @@
+id: T15
+desc: "Starter code for small-data image classification compiles and matches the plan"
+archetype: code
+trials: 3
+metric: pass^k
+graders:
+  - type: "workspace"
+    check: "file_exists"
+    path: "MODEL_PLAN.md"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "^Status: IN-SCOPE"
+  - type: "workspace"
+    check: "file_exists"
+    path: "starter_model.py"
+  - type: "state_check"
+    command: "python3 -m py_compile starter_model.py && echo COMPILES"
+    expect: "COMPILES"
+  - type: "workspace"
+    check: "file_contains"
+    path: "starter_model.py"
+    pattern: "(?im)^(import keras|from keras|import tensorflow|from tensorflow)"
+  - type: "state_check"
+    command: "grep -cE '^(import|from) (torch|sklearn|transformers|xgboost|lightgbm)' starter_model.py || true"
+    expect: "0"
+  - type: "workspace"
+    check: "file_contains"
+    path: "starter_model.py"
+    pattern: "(?i)(applications\\.|VGG16|Xception|Conv2D)"
+  - type: "transcript"
+    check: "max_turns"
+    limit: 40
+scoring: binary
+tracked_metrics:
+  - n_turns
+  - n_toolcalls
+  - n_total_tokens
+  - cost_usd
+reference: ./reference/
+elicitation_answers: {}
+timeout_s: 600

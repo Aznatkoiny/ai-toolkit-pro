@@ -1,0 +1,15 @@
+# Suite: triggers — does the advise skill fire, and only then?
+# T21 core should-battery, T22 environment/debugging should-not pressure,
+# T23 deployment/serving should-not pressure. Runs under the crowded
+# target by default so precision/recall reflect real listing pressure;
+# arm/verify also run it under the default target (a trigger task passes
+# only if it passes under BOTH the default and crowded targets — L15).
+
+suite: triggers
+description: Trigger precision/recall for dl-model-advisor:advise under default and crowded listing pressure.
+default_target: crowded
+headline_metric: pass^k
+tasks:
+  - T21
+  - T22
+  - T23

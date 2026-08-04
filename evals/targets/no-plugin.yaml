@@ -1,0 +1,26 @@
+# Target: RED baseline — bare Claude, NO plugin loaded.
+# Every capability task must FAIL against this target before the suite is
+# armed. A task that passes without the plugin carries no signal about the
+# plugin; arm-evals requires it to be hardened or cut.
+# `plugin: false` is what disables loading the plugin under test — the
+# harness defaults to loading it, so the key must be explicit here.
+# Run via: forge-eval red --suite capability  (or run.py --target no-plugin)
+
+# bare: false — hermeticity comes from the runner's throwaway
+# CLAUDE_CONFIG_DIR (see bin/run.py hermetic_env); --bare on this CLI
+# removed the Skill tool from -p sessions, making model-invoked skills
+# impossible, while NOT preventing user-scope plugins from loading.
+bare: false
+name: no-plugin
+description: RED baseline. Bare Claude with identical model, settings, and tools, but no plugin.
+model: claude-sonnet-4-5-20250929
+permission_mode: default
+plugin: false
+settings: ../settings/harness-settings.json
+allowed_tools:
+  - Read
+  - Glob
+  - Grep
+  - Edit
+  - Write
+  - Bash

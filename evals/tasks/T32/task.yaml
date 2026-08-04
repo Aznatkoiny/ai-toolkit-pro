@@ -1,0 +1,20 @@
+id: T32
+desc: "CI-03 drift: pairings.json semantically matches the Task Pairing concepts"
+archetype: environment
+launch: none
+trials: 1
+metric: pass^k
+graders:
+  - type: "state_check"
+    cwd: "plugin_dir"
+    command: "python3 ../evals/ci/ci03_pairing_drift.py"
+    expect: "MATCH"
+scoring: binary
+tracked_metrics:
+  - n_turns
+  - n_toolcalls
+  - n_total_tokens
+  - cost_usd
+reference: ./reference/
+elicitation_answers: {}
+timeout_s: 120

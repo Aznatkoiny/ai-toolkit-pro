@@ -1,0 +1,20 @@
+id: T34
+desc: "CI-05 no self-promotion: T25-T27 reference plans pass the tier-aware hook"
+archetype: environment
+launch: none
+trials: 1
+metric: pass^k
+graders:
+  - type: "state_check"
+    cwd: "plugin_dir"
+    command: "python3 ../evals/ci/ci05_no_self_promotion.py"
+    expect: "OK"
+scoring: binary
+tracked_metrics:
+  - n_turns
+  - n_toolcalls
+  - n_total_tokens
+  - cost_usd
+reference: ./reference/
+elicitation_answers: {}
+timeout_s: 120

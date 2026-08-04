@@ -1,0 +1,1 @@
+Reference expectation for T21: the five should phrasings activate the dl-model-advisor:advise skill (recall >= 0.8) and none of the three should_not phrasings do (precision 1.0). Trigger graders are skipped in reference mode; this battery is exercised by run/verify under both the default and crowded targets.

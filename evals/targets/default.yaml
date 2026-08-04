@@ -1,0 +1,28 @@
+# Target: the standard launch config for the plugin under test.
+# A target is the CompletionFn analogue: a named `claude -p` launch
+# configuration. Adding a new target file lets you A/B a model or plugin
+# version against an UNCHANGED suite; results are keyed by target name.
+# Paths: `settings` and `distractor_plugin_dirs` resolve relative to THIS
+# file's directory (targets/); `plugin_dir` resolves relative to evals/ and
+# is only a fallback for standalone runs — the CLI --plugin-dir flag wins.
+# The harness always adds: --bare --output-format stream-json --verbose
+# --forward-subagent-text. Pin a dated model snapshot for reproducibility.
+
+# bare: false — hermeticity comes from the runner's throwaway
+# CLAUDE_CONFIG_DIR (see bin/run.py hermetic_env); --bare on this CLI
+# removed the Skill tool from -p sessions, making model-invoked skills
+# impossible, while NOT preventing user-scope plugins from loading.
+bare: false
+name: default
+description: Plugin under test loaded, sandboxed harness settings, pinned model.
+model: claude-sonnet-4-5-20250929
+permission_mode: default
+plugin_dir: ../dl-model-advisor
+settings: ../settings/harness-settings.json
+allowed_tools:
+  - Read
+  - Glob
+  - Grep
+  - Edit
+  - Write
+  - Bash

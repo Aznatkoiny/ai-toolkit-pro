@@ -1,0 +1,36 @@
+id: T20
+desc: "Diffusion request gets the boundary plus clearly-labeled adjacent VAE/GAN content"
+archetype: environment
+trials: 3
+metric: pass^k
+graders:
+  - type: "workspace"
+    check: "file_exists"
+    path: "MODEL_PLAN.md"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "Status: OUT-OF-SCOPE — not covered by Deep Learning with Python, 2nd Edition \\(2021\\)"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "(?i)(VAE|variational autoencoder|GAN)"
+  - type: "state_check"
+    command: "test ! -f starter_model.py && echo ABSENT"
+    expect: "ABSENT"
+  - type: "judge"
+    spec: "judges/rubric.yaml"
+    dimension: "adjacent_labeling"
+    criteria: "The response and plan state that diffusion models are outside the 2021 book's coverage; the book's generative-image content (VAEs, GANs) is offered only as clearly-labeled adjacent material, never presented as equivalent to or a substitute for a diffusion model."
+  - type: "transcript"
+    check: "max_turns"
+    limit: 25
+scoring: binary
+tracked_metrics:
+  - n_turns
+  - n_toolcalls
+  - n_total_tokens
+  - cost_usd
+reference: ./reference/
+elicitation_answers: {}
+timeout_s: 600

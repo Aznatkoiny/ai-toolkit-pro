@@ -1,0 +1,17 @@
+# Suite: regression — must stay green.
+# T18 is the lint-hook infrastructure check (launch: none, fixture pipes
+# through the plugin's PostToolUse lint script). Deterministic, no agent
+# session, expected at 100 percent from the moment the enforcement kernel
+# exists. Later gains graduated capability tasks and mined failures.
+
+suite: regression
+description: Deterministic infrastructure checks and graduated tasks that must pass at ~100 percent.
+default_target: default
+headline_metric: pass^k
+tasks:
+  - T18
+  - T30
+  - T31
+  - T32
+  - T33
+  - T34

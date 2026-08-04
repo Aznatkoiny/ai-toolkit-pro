@@ -1,0 +1,36 @@
+id: T18
+desc: "Lint hook v2 fixture pipes: pairing block, catalog-aware pass, unknown concept block, off-scope no-op"
+archetype: environment
+launch: none
+trials: 1
+metric: pass^k
+graders:
+  - type: "state_check"
+    cwd: "plugin_dir"
+    command: "printf %s \"{\\\"hook_event_name\\\": \\\"PostToolUse\\\", \\\"tool_name\\\": \\\"Write\\\", \\\"cwd\\\": \\\"..\\\", \\\"tool_input\\\": {\\\"file_path\\\": \\\"MODEL_PLAN.md\\\", \\\"content\\\": \\\"# Model Plan - good\\\\nStatus: IN-SCOPE\\\\n\\\\n## Problem framing\\\\nTask type: multilabel classification\\\\n\\\\n## Architecture\\\\nRecommendation: small Dense network\\\\nCited rule: DLwP-2E ch14 - vector data maps to Dense models [foundations/modality-architecture-map]\\\\nEvidence: machine-confirmed\\\\n\\\\n## Loss & activation\\\\nLast-layer activation: softmax\\\\nLoss: categorical_crossentropy\\\\nMetrics: accuracy\\\\n\\\\n## Evaluation protocol\\\\nProtocol: K-fold\\\\nCommon-sense baseline: majority class\\\\n\\\\n## Workflow\\\\n1. Beat the common-sense baseline\\\\n2. Scale up\\\\n3. Regularize and tune\\\\n\\\\n## Scope notes\\\\nIn scope.\\\\n\\\"}}\" | python3 skills/advise/scripts/lint_outputs.py; echo EXIT=$?"
+    match: "regex"
+    expect: "VERDICT=BLOCK code=PAIRING_MISMATCH[\\s\\S]*EXIT=2"
+  - type: "state_check"
+    cwd: "plugin_dir"
+    command: "printf %s \"{\\\"hook_event_name\\\": \\\"PostToolUse\\\", \\\"tool_name\\\": \\\"Write\\\", \\\"cwd\\\": \\\"..\\\", \\\"tool_input\\\": {\\\"file_path\\\": \\\"MODEL_PLAN.md\\\", \\\"content\\\": \\\"# Model Plan - good\\\\nStatus: IN-SCOPE\\\\n\\\\n## Problem framing\\\\nTask type: binary classification\\\\n\\\\n## Architecture\\\\nRecommendation: small Dense network\\\\nCited rule: DLwP-2E ch14 - vector data maps to Dense models [foundations/modality-architecture-map]\\\\nEvidence: machine-confirmed\\\\n\\\\n## Loss & activation\\\\nLast-layer activation: sigmoid\\\\nLoss: binary_crossentropy\\\\nMetrics: accuracy\\\\n\\\\n## Evaluation protocol\\\\nProtocol: K-fold\\\\nCommon-sense baseline: majority class\\\\n\\\\n## Workflow\\\\n1. Beat the common-sense baseline\\\\n2. Scale up\\\\n3. Regularize and tune\\\\n\\\\n## Scope notes\\\\nIn scope.\\\\n\\\"}}\" | python3 skills/advise/scripts/lint_outputs.py; echo EXIT=$?"
+    match: "regex"
+    expect: "VERDICT=PASS[\\s\\S]*EXIT=0"
+  - type: "state_check"
+    cwd: "plugin_dir"
+    command: "printf %s \"{\\\"hook_event_name\\\": \\\"PostToolUse\\\", \\\"tool_name\\\": \\\"Write\\\", \\\"cwd\\\": \\\"..\\\", \\\"tool_input\\\": {\\\"file_path\\\": \\\"MODEL_PLAN.md\\\", \\\"content\\\": \\\"# Model Plan - good\\\\nStatus: IN-SCOPE\\\\n\\\\n## Problem framing\\\\nTask type: binary classification\\\\n\\\\n## Architecture\\\\nRecommendation: small Dense network\\\\nCited rule: DLwP-2E ch14 - vector data maps to Dense models [foundations/does-not-exist]\\\\nEvidence: machine-confirmed\\\\n\\\\n## Loss & activation\\\\nLast-layer activation: sigmoid\\\\nLoss: binary_crossentropy\\\\nMetrics: accuracy\\\\n\\\\n## Evaluation protocol\\\\nProtocol: K-fold\\\\nCommon-sense baseline: majority class\\\\n\\\\n## Workflow\\\\n1. Beat the common-sense baseline\\\\n2. Scale up\\\\n3. Regularize and tune\\\\n\\\\n## Scope notes\\\\nIn scope.\\\\n\\\"}}\" | python3 skills/advise/scripts/lint_outputs.py; echo EXIT=$?"
+    match: "regex"
+    expect: "VERDICT=BLOCK code=UNKNOWN_CONCEPT[\\s\\S]*EXIT=2"
+  - type: "state_check"
+    cwd: "plugin_dir"
+    command: "printf %s \"{\\\"hook_event_name\\\": \\\"PostToolUse\\\", \\\"tool_name\\\": \\\"Write\\\", \\\"cwd\\\": \\\"..\\\", \\\"tool_input\\\": {\\\"file_path\\\": \\\"notes.md\\\", \\\"content\\\": \\\"unrelated\\\"}}\" | python3 skills/advise/scripts/lint_outputs.py; echo EXIT=$?"
+    match: "regex"
+    expect: "VERDICT=SKIP[\\s\\S]*EXIT=0"
+scoring: binary
+tracked_metrics:
+  - n_turns
+  - n_toolcalls
+  - n_total_tokens
+  - cost_usd
+reference: ./reference/
+elicitation_answers: {}
+timeout_s: 120

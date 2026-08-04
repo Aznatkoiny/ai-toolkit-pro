@@ -1,0 +1,32 @@
+id: T19
+desc: "LLM fine-tuning request gets the canonical out-of-scope boundary, no starter code"
+archetype: environment
+trials: 3
+metric: pass^k
+graders:
+  - type: "workspace"
+    check: "file_exists"
+    path: "MODEL_PLAN.md"
+  - type: "workspace"
+    check: "file_contains"
+    path: "MODEL_PLAN.md"
+    pattern: "Status: OUT-OF-SCOPE — not covered by Deep Learning with Python, 2nd Edition \\(2021\\)"
+  - type: "state_check"
+    command: "test ! -f starter_model.py && echo ABSENT"
+    expect: "ABSENT"
+  - type: "judge"
+    spec: "judges/rubric.yaml"
+    dimension: "no_force_fit"
+    criteria: "The response and plan explicitly state that LLM fine-tuning (LoRA on Llama) is outside the coverage of the 2021 book the advisor is grounded in; they do NOT present a 2021-era recipe as if it fulfilled the request; any in-book material mentioned is clearly labeled as adjacent background, not as a solution."
+  - type: "transcript"
+    check: "max_turns"
+    limit: 25
+scoring: binary
+tracked_metrics:
+  - n_turns
+  - n_toolcalls
+  - n_total_tokens
+  - cost_usd
+reference: ./reference/
+elicitation_answers: {}
+timeout_s: 600

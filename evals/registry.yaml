@@ -1,0 +1,24 @@
+# Eval registry: OpenAI-style alias -> versioned suite id.
+# v2 (2026-08-04): suite grew — T25-T27 expedition capability tasks
+# (qlib/quant-finance + TSFM concepts) and T30-T34 catalog-integrity
+# regression tasks (CI-01..05); T18 rebuilt catalog-aware. Never edit a
+# versioned id in place after a run has been recorded against it.
+
+capability: capability.dev.v2
+regression: regression.dev.v2
+triggers: triggers.dev.v2
+
+capability.dev.v2:
+  suite: suites/capability.yaml
+  split: dev
+  description: End-to-end capability tasks incl. catalog-routed quant-finance and TSFM tasks. v1 scores (0/20 bare, 20/20 plugin) predate T25-T27.
+
+regression.dev.v2:
+  suite: suites/regression.yaml
+  split: dev
+  description: Deterministic infrastructure checks - lint-hook pipes (T18) plus catalog-integrity CI-01..05 (T30-T34). Must stay at 100 percent.
+
+triggers.dev.v2:
+  suite: suites/triggers.yaml
+  split: dev
+  description: Trigger precision/recall for dl-model-advisor:advise under default and crowded targets. Unchanged from v1 content.

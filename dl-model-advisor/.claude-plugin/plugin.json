@@ -1,0 +1,8 @@
+{
+  "name": "dl-model-advisor",
+  "description": "Book-grounded deep-learning model selection: routes a problem description (data modality, task type, dataset size) to the architecture, loss/activation pairing, evaluation protocol, and workflow that Deep Learning with Python 2E's decision rules select. Produces MODEL_PLAN.md and starter Keras code.",
+  "author": {
+    "name": "Antony Zaki",
+    "email": "zaki.antony@gmail.com"
+  }
+}

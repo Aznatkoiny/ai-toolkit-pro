@@ -1,0 +1,33 @@
+# Target: crowded listing — trigger evals under realistic pressure.
+# Measuring trigger precision/recall against a bare session (zero competing
+# skills) is optimistic: real users run with many plugins installed and the
+# skill listing budget is ~1 percent of context with a 1,536-char description
+# cap. This target loads a distractor plugin set via repeated --plugin-dir
+# flags so trigger rates are measured against real listing competition.
+# build-evals populates distractors/ with a standard distractor set (small
+# description-heavy plugins, no overlapping functionality) at generation
+# time; add your own to sharpen the pressure toward your users' setups.
+
+# bare: false — hermeticity comes from the runner's throwaway
+# CLAUDE_CONFIG_DIR (see bin/run.py hermetic_env); --bare on this CLI
+# removed the Skill tool from -p sessions, making model-invoked skills
+# impossible, while NOT preventing user-scope plugins from loading.
+bare: false
+name: crowded
+description: Plugin under test plus distractor plugins, for trigger measurement under listing pressure.
+model: claude-sonnet-4-5-20250929
+permission_mode: default
+plugin_dir: ../dl-model-advisor
+settings: ../settings/harness-settings.json
+distractor_plugin_dirs:
+  - ../distractors/note-keeper
+  - ../distractors/repo-auditor
+  - ../distractors/data-wrangler
+  - ../distractors/release-helper
+allowed_tools:
+  - Read
+  - Glob
+  - Grep
+  - Edit
+  - Write
+  - Bash

@@ -1,0 +1,29 @@
+id: T22
+desc: "Environment/debugging phrasings must NOT trigger the advisor"
+archetype: environment
+trials: 1
+metric: pass^k
+graders:
+  - type: "trigger"
+    kind: "skill"
+    component: "dl-model-advisor:advise"
+    min_precision: 1.0
+    min_recall: 0.66
+    should:
+      - "What architecture fits 5,000 labeled chest x-ray images?"
+      - "Which loss should I pick for predicting customer churn?"
+      - "Recommend a neural network for hourly sales forecasting"
+    should_not:
+      - "Fix my CUDA and cuDNN installation"
+      - "TensorFlow does not detect my GPU — help me debug the driver setup"
+      - "Install tensorflow-metal on my MacBook"
+      - "My training job crashes with an out-of-memory error, fix my batch script"
+scoring: binary
+tracked_metrics:
+  - n_turns
+  - n_toolcalls
+  - n_total_tokens
+  - cost_usd
+reference: ./reference/
+elicitation_answers: {}
+timeout_s: 1800

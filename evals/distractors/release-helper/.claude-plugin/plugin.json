@@ -1,0 +1,4 @@
+{
+  "name": "release-helper",
+  "description": "Draft changelogs and release notes from commit history, bump versions, and prepare tag messages."
+}

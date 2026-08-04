@@ -1,0 +1,1 @@
+Infrastructure check (no agent session): CI-01 OKF conformance: every concept parses with a type field. Deterministic probe via evals/ci/ci01_conformance.py against the knowledge catalog and plugin artifacts.
