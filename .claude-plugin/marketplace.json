@@ -1,0 +1,22 @@
+{
+  "name": "ai-toolkit-pro",
+  "description": "A marketplace of AI-development plugins backed by a continuously-growing OKF knowledge catalog.",
+  "owner": {
+    "name": "Antony Zaki",
+    "email": "zaki.antony@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "dl-model-advisor",
+      "description": "Book-grounded deep-learning model selection: routes a problem description (data modality, task type, dataset size) to the architecture, loss/activation pairing, evaluation protocol, and workflow that Deep Learning with Python 2E's decision rules select. Produces MODEL_PLAN.md and starter Keras code.",
+      "source": "./dl-model-advisor",
+      "category": "ai-development",
+      "tags": ["model-selection", "deep-learning", "keras", "evals"],
+      "strict": true,
+      "author": {
+        "name": "Antony Zaki",
+        "email": "zaki.antony@gmail.com"
+      }
+    }
+  ]
+}
