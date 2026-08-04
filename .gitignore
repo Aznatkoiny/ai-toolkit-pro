@@ -1,0 +1,13 @@
+# Copyrighted book files — never commit
+*.pdf
+*.epub
+
+# Eval run artifacts (transcripts, workspaces, reports)
+runs/
+
+# Forge build state and logs
+.forge/build-logs/
+.claude/worktrees/
+
+# OS noise
+.DS_Store
