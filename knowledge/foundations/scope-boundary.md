@@ -25,10 +25,20 @@ labeled as background):
 
 - LLM / foundation-model fine-tuning (LoRA, PEFT, instruction tuning)
 - Diffusion models and modern text-to-image systems
-- Reinforcement learning
+- Reinforcement learning (qlib's RL execution paradigm is MENTIONED in
+  draft coverage below, but RL methodology itself remains uncovered)
 - Graph neural networks
 - Recommender systems / collaborative filtering
-- Quantitative-finance ML workflows (expedition #1, in progress)
+
+# Draft coverage (expedition qlib-2026-08-03 — unverified tier)
+
+Quantitative-finance ML now has DRAFT concepts under
+[/domains/quant-finance/](/domains/quant-finance/) and
+[/modern/](/modern/): alpha-forecasting routing, leakage and evaluation
+discipline, qlib model selection, the qrun workflow pattern, time-series
+foundation models, and LLM-automated factor research. The advisor may use
+them WITH THEIR TIER STATED (`Evidence: unverified`); confident, unhedged
+guidance still requires promotion to stable.
 
 This concept has a deliberately short `stale_after`: every expedition that
 lands must revisit it and carve out what it now covers.

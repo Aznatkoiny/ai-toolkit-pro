@@ -29,9 +29,21 @@ its plans derive from the `verified` entries here.
 
 # Modern (2022–2026)
 
-Awaiting expeditions. Drafts land here with `status: draft` and mandatory
-`stale_after`.
+* [Time-series foundation models for financial forecasting](/modern/tsfm-financial-forecasting.md) - zero-shot TSFMs as out-of-domain transfer; caveats from model cards (draft)
+* [LLM-automated factor research](/modern/llm-automated-factor-research.md) - RD-Agent(Q)/AlphaGen loops paired with the qlib backtest stack (draft)
 
 # Domains
 
-* quant-finance/ - expedition #1 (qlib), commissioned, not yet landed
+## quant-finance (expedition qlib-2026-08-03 — all draft)
+
+* [Alpha-forecasting routing](/domains/quant-finance/alpha-forecasting-routing.md) - when a problem is alpha-forecasting territory and the qlib workflow applies
+* [Leakage and evaluation discipline](/domains/quant-finance/leakage-and-evaluation.md) - point-in-time data, chronological/purged splits, IC/RankIC, multi-run reporting
+* [qlib model selection](/domains/quant-finance/qlib-model-selection.md) - boosted-tree baseline vs neural models in the qlib zoo
+* [qlib qrun workflow](/domains/quant-finance/qlib-qrun-workflow.md) - declarative YAML from data to backtest
+
+# Tier vocabulary (`tier` custom field)
+
+`book-canon` (DLwP-2E, pedagogically complete) · `modern-consensus`
+(multiple independent 2022–2026 sources agree) · `frontier` (single paper
+or trending system; explicitly experimental). Orthogonal to OKF trust
+tiers, which derive from `verified` entries.
