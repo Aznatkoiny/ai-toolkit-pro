@@ -5,9 +5,18 @@
 # Eval run artifacts (transcripts, workspaces, reports)
 runs/
 
-# Forge build state and logs
-.forge/build-logs/
+# Forge pipeline state (machine-local) and logs
+.forge/
 .claude/worktrees/
+
+# Holdout eval tranche — NEVER public: its value is that build loops
+# cannot see it (kept local-only, outside the published marketplace repo)
+evals-holdout/
+
+# Local labeling scratch page
+labeling.html
 
 # OS noise
 .DS_Store
+
+/deep-learning-with-python
