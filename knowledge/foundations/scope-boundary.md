@@ -40,5 +40,21 @@ foundation models, and LLM-automated factor research. The advisor may use
 them WITH THEIR TIER STATED (`Evidence: unverified`); confident, unhedged
 guidance still requires promotion to stable.
 
+# Draft coverage (expedition weekly-2026-08-10 — unverified tier)
+
+LLM **inference and serving** has its first DRAFT concepts under
+[/modern/](/modern/): online (load-time) quantization scheme selection and
+its GPU-architecture gates, and vLLM's migration of optional integrations
+to out-of-tree plugins. Two limits on this coverage, both deliberate:
+
+- It is vLLM-specific and single-project (`tier: frontier`). Nothing here
+  generalizes to other serving stacks, and no accuracy or throughput
+  evidence was gathered.
+- Both concepts describe `main`-branch behavior that reached no vLLM
+  release as of 2026-08-10, so each carries an explicit version gate.
+
+LLM *training* and *fine-tuning* remain uncovered, as listed above —
+serving coverage does not touch that boundary.
+
 This concept has a deliberately short `stale_after`: every expedition that
 lands must revisit it and carve out what it now covers.
