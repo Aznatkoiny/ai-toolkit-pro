@@ -31,6 +31,8 @@ its plans derive from the `verified` entries here.
 
 * [Time-series foundation models for financial forecasting](/modern/tsfm-financial-forecasting.md) - zero-shot TSFMs as out-of-domain transfer; caveats from model cards (draft)
 * [LLM-automated factor research](/modern/llm-automated-factor-research.md) - RD-Agent(Q)/AlphaGen loops paired with the qlib backtest stack (draft)
+* [vLLM online quantization](/modern/vllm-online-quantization.md) - load-time quantization without a pre-quantized checkpoint; schemes gated by GPU architecture (draft)
+* [vLLM out-of-tree plugins](/modern/vllm-out-of-tree-plugins.md) - optional integrations moving behind the entry-point plugin system; bitsandbytes now a separate install (draft)
 
 # Domains
 
