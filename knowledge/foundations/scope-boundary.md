@@ -40,5 +40,25 @@ foundation models, and LLM-automated factor research. The advisor may use
 them WITH THEIR TIER STATED (`Evidence: unverified`); confident, unhedged
 guidance still requires promotion to stable.
 
+# Draft coverage (expedition weekly-2026-08-17 — unverified tier)
+
+Three further areas gained DRAFT concepts under [/modern/](/modern/), usable
+only WITH THEIR TIER STATED (`Evidence: unverified`):
+
+- **Evidence discipline for external literature** — how much weight a published
+  benchmark claim may carry before it is reproduced
+  ([published-result reproducibility](/modern/published-result-reproducibility.md)).
+- **Inference serving / speculative decoding** — previously uncovered
+  entirely; now one draft on the concurrency dependence of draft-length tuning
+  ([speculative-decoding concurrency](/modern/speculative-decoding-concurrency.md)).
+  Inference deployment more broadly remains uncovered.
+- **Open-weight base-model selection and licensing**
+  ([open-weight model-selection signals](/modern/open-weight-model-selection-signals.md)).
+  This draft touches the LLM/foundation-model area listed as uncovered above.
+  **The boundary above still governs:** fine-tuning *methodology* (LoRA, PEFT,
+  instruction tuning) remains an OUT-OF-SCOPE response. The draft covers only
+  the selection-and-licensing decision preceding that work, and the conflict is
+  recorded inside the draft rather than resolved here.
+
 This concept has a deliberately short `stale_after`: every expedition that
 lands must revisit it and carve out what it now covers.
