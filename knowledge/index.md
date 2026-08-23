@@ -31,6 +31,9 @@ its plans derive from the `verified` entries here.
 
 * [Time-series foundation models for financial forecasting](/modern/tsfm-financial-forecasting.md) - zero-shot TSFMs as out-of-domain transfer; caveats from model cards (draft)
 * [LLM-automated factor research](/modern/llm-automated-factor-research.md) - RD-Agent(Q)/AlphaGen loops paired with the qlib backtest stack (draft)
+* [Published-result reproducibility](/modern/published-result-reproducibility.md) - a peer-reviewed benchmark claim is an unverified hypothesis until reproduced at your scale (draft)
+* [Speculative-decoding concurrency dependence](/modern/speculative-decoding-concurrency.md) - draft-length tuning is a function of server load, not of the model (draft)
+* [Open-weight model-selection signals](/modern/open-weight-model-selection-signals.md) - likes vs downloads vs derivatives, and why frontier licences must be re-checked per release (draft)
 
 # Domains
 
