@@ -60,5 +60,34 @@ only WITH THEIR TIER STATED (`Evidence: unverified`):
   the selection-and-licensing decision preceding that work, and the conflict is
   recorded inside the draft rather than resolved here.
 
+# Draft coverage (expedition weekly-2026-08-24 — unverified tier)
+
+Four further areas gained DRAFT concepts under [/modern/](/modern/), usable only
+WITH THEIR TIER STATED (`Evidence: unverified`). All four are single-source and
+`tier: frontier`.
+
+- **Speculative-decoding method selection** — extends the inference-serving
+  coverage opened on 2026-08-17: which drafting method and proposal length to
+  use is a per-target, per-workload benchmark result
+  ([speculative drafting method selection](/modern/speculative-drafting-method-selection.md)).
+  Speculator *training* remains uncovered.
+- **Numerical integrity of an RL training stack**
+  ([train-inference numerical mismatch](/modern/train-inference-numerical-mismatch.md)).
+  This draft touches the reinforcement-learning area listed as uncovered above.
+  **The boundary above still governs:** RL methodology — algorithm choice, reward
+  design, when to use RL at all — remains an OUT-OF-SCOPE response. The draft covers
+  only the systems question of whether the rollout engine and the trainer evaluate
+  the same policy, and the conflict is recorded inside the draft rather than
+  resolved here.
+- **Benchmark-contamination detection** — a second draft in evaluation methodology,
+  on probes that separate capability from benchmark-following when the test set is
+  public ([benchmark-optimization probes](/modern/benchmark-optimization-probes.md)).
+  Its evidence is ASR-only; transfer to other modalities is untested.
+- **Retrieval and embeddings — previously uncovered entirely**; now one draft on
+  choosing between dense and multi-vector retrieval and budgeting the index
+  ([late-interaction retrieval tradeoff](/modern/late-interaction-retrieval-tradeoff.md)).
+  Retrieval-model *training*, chunking strategy, and end-to-end RAG design remain
+  uncovered.
+
 This concept has a deliberately short `stale_after`: every expedition that
 lands must revisit it and carve out what it now covers.

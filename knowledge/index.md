@@ -34,6 +34,10 @@ its plans derive from the `verified` entries here.
 * [Published-result reproducibility](/modern/published-result-reproducibility.md) - a peer-reviewed benchmark claim is an unverified hypothesis until reproduced at your scale (draft)
 * [Speculative-decoding concurrency dependence](/modern/speculative-decoding-concurrency.md) - draft-length tuning is a function of server load, not of the model (draft)
 * [Open-weight model-selection signals](/modern/open-weight-model-selection-signals.md) - likes vs downloads vs derivatives, and why frontier licences must be re-checked per release (draft)
+* [Speculative drafting method selection](/modern/speculative-drafting-method-selection.md) - the method and proposal-length ranking flips between workloads and within a model family (draft)
+* [Train-inference numerical mismatch](/modern/train-inference-numerical-mismatch.md) - measure rollout-vs-trainer logprob divergence before blaming an RL algorithm (draft)
+* [Benchmark-optimization probes](/modern/benchmark-optimization-probes.md) - three counterfactuals that separate capability from benchmark-following on a public test set (draft)
+* [Late-interaction retrieval tradeoff](/modern/late-interaction-retrieval-tradeoff.md) - ~1 NDCG point over a dense twin, wide per-corpus spread, compressible index (draft)
 
 # Domains
 
