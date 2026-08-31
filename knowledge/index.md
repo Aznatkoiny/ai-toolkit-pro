@@ -34,6 +34,9 @@ its plans derive from the `verified` entries here.
 * [Published-result reproducibility](/modern/published-result-reproducibility.md) - a peer-reviewed benchmark claim is an unverified hypothesis until reproduced at your scale (draft)
 * [Speculative-decoding concurrency dependence](/modern/speculative-decoding-concurrency.md) - draft-length tuning is a function of server load, not of the model (draft)
 * [Open-weight model-selection signals](/modern/open-weight-model-selection-signals.md) - likes vs downloads vs derivatives, and why frontier licences must be re-checked per release (draft)
+* [Hardware-gated serving defaults](/modern/hardware-gated-serving-defaults.md) - inference-server defaults are selected from device memory and compute capability, and flip silently on upgrade (draft)
+* [Quantization calibration silent no-op](/modern/quantization-calibration-silent-noop.md) - a completed GPTQ/AWQ run is not evidence that calibration ran; check that weights depend on the calibration data (draft)
+* [Benchmark score as a selection signal](/modern/benchmark-score-as-selection-signal.md) - leaderboard rank can track benchmark-fitting, and corpus averages hide slice variance (draft)
 
 # Domains
 

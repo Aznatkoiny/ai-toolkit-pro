@@ -60,5 +60,37 @@ only WITH THEIR TIER STATED (`Evidence: unverified`):
   the selection-and-licensing decision preceding that work, and the conflict is
   recorded inside the draft rather than resolved here.
 
+# Draft coverage (expedition weekly-2026-08-31 — unverified tier)
+
+Three further areas gained DRAFT concepts under [/modern/](/modern/), usable only
+WITH THEIR TIER STATED (`Evidence: unverified`):
+
+- **Serving-stack upgrade and configuration discipline** — how inference-server
+  defaults are selected from device memory and compute capability, and what changes
+  silently on upgrade
+  ([hardware-gated serving defaults](/modern/hardware-gated-serving-defaults.md)).
+  **This draft conflicts with the sentence above** recording that "Inference
+  deployment more broadly remains uncovered" for the 2026-08-17 expedition. **That
+  boundary still governs:** general inference-deployment questions remain an
+  OUT-OF-SCOPE response. The draft covers only which defaults to pin and how to read
+  a serving benchmark, and the conflict is recorded inside the draft rather than
+  resolved here.
+- **Post-training quantization validation** — verifying that a calibration-based
+  quantization run actually calibrated, rather than silently falling back to
+  round-to-nearest
+  ([quantization calibration silent no-op](/modern/quantization-calibration-silent-noop.md)).
+  Quantization was not previously listed either as covered or as uncovered. It sits
+  adjacent to the LLM/foundation-model fine-tuning exclusion above, which is
+  unchanged: fine-tuning *methodology* remains OUT-OF-SCOPE.
+- **Benchmark scores as a model-selection signal** — benchmark fitting, aggregation
+  hiding slice variance, and single-reference metrics rewarding annotator orthography
+  ([benchmark score as a selection signal](/modern/benchmark-score-as-selection-signal.md)).
+  **Its evidence is drawn entirely from speech recognition, a modality no concept in
+  this catalog covers** and which the
+  [modality → architecture map](/foundations/modality-architecture-map.md) does not
+  route. This draft does NOT open ASR coverage: speech-recognition modelling
+  questions remain an OUT-OF-SCOPE response, and only the draft's eval-methodology
+  claims are usable.
+
 This concept has a deliberately short `stale_after`: every expedition that
 lands must revisit it and carve out what it now covers.
