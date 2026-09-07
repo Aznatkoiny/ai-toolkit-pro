@@ -60,5 +60,29 @@ only WITH THEIR TIER STATED (`Evidence: unverified`):
   the selection-and-licensing decision preceding that work, and the conflict is
   recorded inside the draft rather than resolved here.
 
+# Draft coverage (expedition weekly-2026-09-07 — unverified tier)
+
+Four further areas gained DRAFT concepts under [/modern/](/modern/), usable only WITH THEIR TIER
+STATED (`Evidence: unverified`):
+
+- **Verification discipline for your own training runs** — the class of stack defects that raise
+  nothing and leave a normal-looking loss curve, and how to audit for them
+  ([silent training defects](/modern/silent-training-defects.md)). Several of its instances sit
+  inside the LLM fine-tuning area listed as uncovered above; **the boundary still governs** and
+  fine-tuning *methodology* remains an OUT-OF-SCOPE response. The conflict is recorded inside the
+  draft.
+- **Inference-engine upgrade and default management**
+  ([upgrade default re-derivation](/modern/upgrade-default-rederivation.md)). This narrows the
+  sentence above stating that inference deployment remains uncovered: upgrade discipline now has a
+  draft. Capacity planning, kernel selection and engine choice remain uncovered.
+- **Long-context supervised fine-tuning on one node**
+  ([long-context SFT memory ladder](/modern/long-context-sft-memory-ladder.md)). This is squarely a
+  fine-tuning recipe and therefore inside the excluded area above; **the boundary still governs**,
+  the conflict is recorded inside the draft, and confident guidance still requires promotion.
+- **Retrieval and embedding-model evaluation** — previously uncovered entirely; now one draft on
+  document-length caps as a confound in retriever comparisons
+  ([retrieval eval and document length](/modern/retrieval-eval-document-length.md)). RAG system
+  design remains uncovered.
+
 This concept has a deliberately short `stale_after`: every expedition that
 lands must revisit it and carve out what it now covers.

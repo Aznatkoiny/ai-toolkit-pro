@@ -34,6 +34,10 @@ its plans derive from the `verified` entries here.
 * [Published-result reproducibility](/modern/published-result-reproducibility.md) - a peer-reviewed benchmark claim is an unverified hypothesis until reproduced at your scale (draft)
 * [Speculative-decoding concurrency dependence](/modern/speculative-decoding-concurrency.md) - draft-length tuning is a function of server load, not of the model (draft)
 * [Open-weight model-selection signals](/modern/open-weight-model-selection-signals.md) - likes vs downloads vs derivatives, and why frontier licences must be re-checked per release (draft)
+* [Silent training defects](/modern/silent-training-defects.md) - the training-stack failures that raise nothing and leave a normal-looking loss curve, and how to audit for them (draft)
+* [Upgrade default re-derivation](/modern/upgrade-default-rederivation.md) - an engine upgrade recomputes your operating point from hardware and version; pin what you benchmarked (draft)
+* [Long-context SFT memory ladder](/modern/long-context-sft-memory-ladder.md) - chunked loss, RoPE rescaling, activation offload, sequence parallelism, and the attention-shape gate on the last rung (draft)
+* [Retrieval eval and document length](/modern/retrieval-eval-document-length.md) - lift the document-length cap before comparing retrievers, or the comparison partly measures truncation (draft)
 
 # Domains
 
