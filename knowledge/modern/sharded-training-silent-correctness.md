@@ -8,7 +8,7 @@ description: >
   parallelism configuration against a single-device reference before trusting a run, and re-validate
   after every framework upgrade that touches the sharding path.
 tags: [distributed-training, expert-parallelism, context-parallelism, moe, correctness, validation]
-tier: modern-consensus
+tier: frontier
 applies_to:
   - enabling or changing expert parallelism, context parallelism, or a device mesh on a training run
   - upgrading a training framework version that touches sharding, attention, or loss paths
@@ -66,10 +66,13 @@ max-absolute errors of 0.3–2.5, described as 10–100× the noise floor; after
 at a maximum relative error of 2.7e-5.[^tr-48205] **That comparison — not the loss curve — is the
 test this rule asks you to run.**
 
-**Assume one fix is not the whole bug.** A residual defect in the same path, where sentinel slots
-clamped into a real expert still collected router gradient, was fixed three days later in a separate
-change.[^tr-48689] A configuration that was verified against the first fix was still wrong under the
-second.
+**Assume one fix is not the whole bug.** Three days after the first fix, a second expert-parallel
+router-gradient defect was fixed in a *different* experts-forward kernel — sentinel slots clamped into
+a real expert still collected router gradient in `batched_mm_experts_forward`, rather than in the
+`torch._grouped_mm` path the first fix addressed.[^tr-48689] Whether a configuration validated after
+the first fix was still affected depends on which kernel it used, and no source establishes that. What
+the pair does establish is that **one round of validation against one fix does not retire the failure
+class.**
 
 **Parallelism can silently change model semantics, not just numerics.** A `supports_context_parallel`
 property was added that returns `False` for any model whose `config.layer_types` contains a
@@ -78,9 +81,11 @@ non-`full_attention` layer (sliding-window, chunked), and for pre-`layer_types` 
 "the per-layer mask is dropped, so a layer using a stricter mask (sliding-window or chunked
 attention) would silently train as full causal instead".[^tr-48442] **If you enabled context
 parallelism on a sliding-window model family and it appeared to work, you were training a different
-model than the one you configured.** Critically, this change *adds a gate; it does not enforce one*
-— no in-window commit was found making the Trainer or the context-parallel entry point check the
-property, so as of 2026-09-14 this remains a property you must query yourself.[^tr-48442]
+model than the one you configured.** Critically, this change *adds a gate; it does not enforce one* —
+a repository-wide search of `transformers` main at commit `a2c15b3` (2026-09-13) finds no caller of
+`supports_context_parallel` anywhere outside its own definition, neither in the Trainer nor at the
+context-parallel entry point.[^tr-48442] **As of 2026-09-14 this is a property you must query
+yourself; nothing will stop you from enabling context parallelism on a model that cannot express it.**
 
 **The same class of defect appears outside parallelism, wherever an auxiliary path shares a tensor
 with the real one.** In D-FINE, RT-DETR and RT-DETRv2, the Hungarian-matched main loss was built
@@ -93,11 +98,13 @@ fine-tuned this way were trained with their inference path barely supervised —
 error.[^tr-48528]
 
 **This is not one library's problem.** Independent performance work on a different stack (MiniMax M3
-on AMD MI355X, vLLM/ROCm) reports two silent correctness breaks found only because a correctness
-gate was run beside each performance gate: an FP8 KV-cache view on FNUZ ROCm scored 0.0099 strict-match
-on GSM8K unpatched against 0.9575 patched, and a bad expert-parallel mask gave cosine similarity 0.527
-against a reference 1.0.[^vllm-m3-mi355x] **Put a correctness gate beside every performance gate** is
-that post's own stated practice, and it is the generalizable form of this rule.[^vllm-m3-mi355x]
+on AMD Instinct hardware, vLLM/ROCm) reports at least three silent correctness breaks found only
+because a correctness gate was run beside each performance gate: an FP8 KV-cache view on FNUZ ROCm
+scored 0.0099 strict-match on GSM8K unpatched against 0.9575 patched (measured on MI300X), a bad
+expert-parallel mask gave cosine similarity 0.527 against a reference 1.0, and a KV-layout defect
+dropped GSM8K to roughly 0.0008.[^vllm-m3-mi355x] **"Put a correctness gate beside every performance
+gate" is that post's own stated practice**, and it is the generalizable form of this
+rule.[^vllm-m3-mi355x]
 
 **Operational consequence.** If you ran an expert-parallel MoE fine-tune on `transformers` before
 2026-09-08, or a context-parallel run on a sliding-window model, or a D-FINE/RT-DETR fine-tune with
@@ -106,6 +113,14 @@ assume the result was merely slower than it could have been.[^tr-48205][^tr-4844
 
 # Open questions
 
+- **These sources are much less independent than their count suggests, which is why the tier is
+  `frontier` rather than `modern-consensus`.** Three of the four `transformers` sources (#48205,
+  #48689, #48442) were authored by the same contributor as a single expert-/context-parallelism
+  workstream, and #48689 is an explicit follow-up to an issue raised by #48205. They are not
+  independent observations of a general phenomenon; they are one engineer finding successive defects
+  in work they were already auditing. The genuinely independent corroboration is #48528 (different
+  author, different subsystem) and the vendor-authored vLLM/AMD post. **Four of the five sources also
+  come from a single repository.**
 - All four `transformers` measurements are the respective commit authors' own, quoted from commit
   messages; none has been independently reproduced here or, as far as these sources show, by any third
   party. The *existence and direction* of each defect is established by the merged diff; the precise
@@ -140,8 +155,8 @@ This concept also strengthens, rather than conflicts with, the stable
 how you estimate generalization from a correct training run, and says nothing about establishing
 that the run was correct in the first place. The two are sequential, not alternative.
 
-[^tr-48205]: huggingface/transformers PR #48205 (source id: tr-48205), merged 2026-09-08, commit `2ca0705`. The uninitialized sentinel rows, the unsummed per-rank router-score gradients, the `nan grad_norm` symptom, and the 3/179 → 179/179 single-GPU fp32 comparison with its error magnitudes are stated in the commit message; the code change spans `integrations/moe.py`, `distributed/tensor_parallel.py`, `trainer.py`, and `trainer_optimizer.py`. Date from `git log -1 --format=%ci` on a local clone.
+[^tr-48205]: huggingface/transformers PR #48205 (source id: tr-48205), merged 2026-09-08, commit `2ca0705`. The uninitialized sentinel rows, the unsummed per-rank router-score gradients, the `nan grad_norm` symptom, and the 3/179 → 179/179 single-GPU fp32 comparison with its error magnitudes are stated in the commit message; the code change spans `integrations/moe.py`, `distributed/tensor_parallel.py`, `distributed/mixin.py`, `trainer.py`, and `trainer_optimizer.py`. Date from `git log -1 --format=%ci` on a local clone.
 [^tr-48689]: huggingface/transformers PR #48689 (source id: tr-48689), merged 2026-09-11, commit `67f5085`. A separate residual defect — sentinel slots clamped into a real expert still collecting router gradient — establishing that #48205 alone was not sufficient. Date from `git log`.
-[^tr-48442]: huggingface/transformers PR #48442 (source id: tr-48442), merged 2026-09-07, commit `8eaf75f`. Adds `PreTrainedModel.supports_context_parallel` (24 added lines in `modeling_utils.py`) plus a `_supports_context_parallel` class flag for models context parallelism can never express (attention sinks); the quoted "silently train as full causal" hazard and the linear-attention exclusion are from the added docstring. That no in-window commit enforces the gate was established by searching the window's commits, and is an absence-of-evidence finding rather than a statement in the source. Date from `git log`.
+[^tr-48442]: huggingface/transformers PR #48442 (source id: tr-48442), merged 2026-09-07, commit `8eaf75f`. Adds `PreTrainedModel.supports_context_parallel` (24 added lines in `modeling_utils.py`) plus a `_supports_context_parallel` class flag for models context parallelism can never express (attention sinks); the quoted "silently train as full causal" hazard and the linear-attention exclusion are from the added docstring. That nothing enforces the gate is not stated in the source: it was established independently by a repository-wide search of `transformers` main at commit `a2c15b3` (2026-09-13), which returns hits for `supports_context_parallel` only inside its own definition at `modeling_utils.py:1139-1161` and no consumer elsewhere. Date from `git log`.
 [^tr-48528]: huggingface/transformers PR #48528 (source id: tr-48528), merged 2026-09-11, commit `846bdfd`. Five added lines each in `loss/loss_d_fine.py` and `loss/loss_rt_detr.py` plus regression tests; the quoted sentence about the matcher and the scope limit (affects training with `num_denoising > 0` only; inference unchanged) are from the commit. Date from `git log`.
-[^vllm-m3-mi355x]: vLLM blog, "Optimizing MiniMax M3 on AMD MI355X" (source id: vllm-m3-mi355x), read at repo commit `ee2f6dd`, post dated 2026-09-10. The FP8-KV-view GSM8K figures, the expert-parallel mask cosine-similarity figure, and the practice of pairing a correctness gate with every performance gate are stated there. Vendor-authored (AMD and Embedded LLM); see the performance-attribution concept for this post's other caveats.
+[^vllm-m3-mi355x]: vLLM blog, "Optimizing MiniMax M3 on AMD MI355X" (source id: vllm-m3-mi355x), read at repo commit `ee2f6dd`, post dated 2026-09-10. The FP8-KV-view GSM8K figures, the expert-parallel mask cosine-similarity figure, the KV-layout defect scoring roughly 0.0008, and the practice of pairing a correctness gate with every performance gate ("Put a correctness gate beside every performance gate", stated verbatim in the post's lessons list) are stated there. **Note the hardware:** the post's headline optimization work targets MI355X, but the 0.0099-vs-0.9575 GSM8K comparison is explicitly reported on MI300X. Vendor-authored (AMD and Embedded LLM); see the performance-attribution concept for this post's other caveats.
