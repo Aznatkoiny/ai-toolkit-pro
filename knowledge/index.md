@@ -34,6 +34,10 @@ its plans derive from the `verified` entries here.
 * [Published-result reproducibility](/modern/published-result-reproducibility.md) - a peer-reviewed benchmark claim is an unverified hypothesis until reproduced at your scale (draft)
 * [Speculative-decoding concurrency dependence](/modern/speculative-decoding-concurrency.md) - draft-length tuning is a function of server load, not of the model (draft)
 * [Open-weight model-selection signals](/modern/open-weight-model-selection-signals.md) - likes vs downloads vs derivatives, and why frontier licences must be re-checked per release (draft)
+* [Sharded-training silent correctness](/modern/sharded-training-silent-correctness.md) - a distributed run that does not crash is not evidence that it is correct; validate gradients against a single-device reference (draft)
+* [Performance-attribution discipline](/modern/performance-attribution-discipline.md) - configured is not eligible and eligible is not executed; verify a backend ran before crediting it (draft)
+* [Agentic-serving routing](/modern/agentic-serving-routing.md) - session affinity over load balancing for multi-turn agent traffic, and why PP/DCP gains do not transfer across workload shapes (draft)
+* [Upgrade blast radius](/modern/upgrade-blast-radius.md) - tag date does not imply containment; classify removals as hard failure, silent fallback, or silent semantic change (draft)
 
 # Domains
 
