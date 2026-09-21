@@ -47,7 +47,16 @@
   (3.9x wall-clock from three config changes; single-source, and the post cites a
   TRL version that does not exist), SGLang v0.5.20's CUDA 12 retirement and deleted
   backends, and the Chord W4A16 MoE kernels for Kimi K2.x. Candidates for
-  2026-09-28.
+  2026-09-28. Verified groundwork on the SGLang one, recorded so it need not be
+  re-derived: at tag `v0.5.20` (`94602c9c`) a whole-tree `git grep cutlass_mla`
+  returns **zero** hits, against ten files at `v0.5.19` (`0bcd8223`) including the
+  CUDA source and its build/binding entries — so out-of-tree code calling
+  `sgl_kernel`'s `cutlass_mla` op loses the symbol, not just the
+  `--attention-backend` choice. And `SGLANG_DISAGGREGATION_SAMPLING_MASK_MAX_TOKENS`
+  is retained at `v0.5.20` solely as a startup tripwire
+  (`srt/environ.py`: *"Retained only to reject the removed setting during startup"*),
+  so prefill/decode deployments carrying it **fail to boot by design** — the variable
+  must leave the manifests before the image bump, not after.
 
 ## 2026-08-17
 
