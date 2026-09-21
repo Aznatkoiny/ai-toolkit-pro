@@ -34,15 +34,19 @@ its plans derive from the `verified` entries here.
 * [Published-result reproducibility](/modern/published-result-reproducibility.md) - a peer-reviewed benchmark claim is an unverified hypothesis until reproduced at your scale (draft)
 * [Speculative-decoding concurrency dependence](/modern/speculative-decoding-concurrency.md) - draft-length tuning is a function of server load, not of the model (draft)
 * [Open-weight model-selection signals](/modern/open-weight-model-selection-signals.md) - likes vs downloads vs derivatives, and why frontier licences must be re-checked per release (draft)
+* [Release-containment discipline](/modern/release-containment-discipline.md) - merged is not shipped; establish containment by ancestry, not by date (draft)
+* [Serving-benchmark measurement windows](/modern/serving-benchmark-measurement-windows.md) - a latency number is only comparable against its measurement window and control variable (draft)
+* [Adapter target-matching](/modern/adapter-target-matching.md) - a non-first adapter matching no target_module was a silent no-op; assert the match (draft)
 
 # Domains
 
-## quant-finance (expedition qlib-2026-08-03 — all draft)
+## quant-finance (expeditions qlib-2026-08-03 and weekly-2026-09-21 — all draft)
 
 * [Alpha-forecasting routing](/domains/quant-finance/alpha-forecasting-routing.md) - when a problem is alpha-forecasting territory and the qlib workflow applies
 * [Leakage and evaluation discipline](/domains/quant-finance/leakage-and-evaluation.md) - point-in-time data, chronological/purged splits, IC/RankIC, multi-run reporting
 * [qlib model selection](/domains/quant-finance/qlib-model-selection.md) - boosted-tree baseline vs neural models in the qlib zoo
 * [qlib qrun workflow](/domains/quant-finance/qlib-qrun-workflow.md) - declarative YAML from data to backtest
+* [qlib dependency pinning](/domains/quant-finance/qlib-dependency-pinning.md) - the released package predates its own compatibility fixes; choose your MLflow remedy deliberately (weekly-2026-09-21)
 
 # Tier vocabulary (`tier` custom field)
 

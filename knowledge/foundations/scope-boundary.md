@@ -60,5 +60,29 @@ only WITH THEIR TIER STATED (`Evidence: unverified`):
   the selection-and-licensing decision preceding that work, and the conflict is
   recorded inside the draft rather than resolved here.
 
+# Draft coverage (expedition weekly-2026-09-21 — unverified tier)
+
+Four further areas gained DRAFT concepts, usable only WITH THEIR TIER STATED
+(`Evidence: unverified`). All four are `frontier`:
+
+- **Dependency and release engineering** — previously uncovered entirely; now
+  [release-containment discipline](/modern/release-containment-discipline.md) (merged is
+  not shipped; check ancestry, not dates) and its quant-finance instance,
+  [qlib dependency pinning](/domains/quant-finance/qlib-dependency-pinning.md). The
+  latter extends the existing quant-finance module rather than opening new ground.
+- **Serving-benchmark methodology** — extends the inference-serving coverage opened on
+  2026-08-17 with
+  [serving-benchmark measurement windows](/modern/serving-benchmark-measurement-windows.md).
+  Inference deployment more broadly still remains uncovered.
+- **Adapter configuration mechanics**
+  ([adapter target-matching](/modern/adapter-target-matching.md)). **This draft touches
+  the LLM/foundation-model fine-tuning area listed as uncovered above, and the boundary
+  above still governs:** LoRA/PEFT *methodology* — which rank, which modules are worth
+  adapting, whether LoRA suits a task — remains an OUT-OF-SCOPE response. The draft
+  covers only the mechanical check that a configured adapter attached to anything at
+  all. The conflict is recorded inside the draft rather than resolved here, following
+  the precedent set by
+  [open-weight model-selection signals](/modern/open-weight-model-selection-signals.md).
+
 This concept has a deliberately short `stale_after`: every expedition that
 lands must revisit it and carve out what it now covers.
