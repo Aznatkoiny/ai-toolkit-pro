@@ -84,10 +84,11 @@ which predates the caps by over a year.[^qlib-deps] **PyPI's newest `pyqlib` is 
 bound**[^pypi-pyqlib] — so a fresh install today gets the *old*, uncapped constraints and may
 silently resolve to a dependency the project itself has already declared incompatible. **Note that
 the tag listing alone would not have established this**: a git tag and a published distribution are
-independent facts, which is this concept's own thesis applied to itself. **This is the dangerous shape of the rule: the failure is not an import
-error at install time but a behavioral change at run time.** See
+independent facts, which is this concept's own thesis applied to itself. **The dependency resolves
+without complaint at install time and the breakage surfaces later, at first use** — here as a raised
+`MlflowException` rather than silent corruption. See
 [qlib dependency pinning](/domains/quant-finance/qlib-dependency-pinning.md) for the qlib-specific
-gate.
+gate and its three remedies.
 
 **Breaking changes are visible on `main` before any release carries them — which is your migration
 window, not your upgrade signal.** `transformers` merged a change on 2026-09-15 that sets
