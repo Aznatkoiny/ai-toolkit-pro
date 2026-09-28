@@ -34,6 +34,10 @@ its plans derive from the `verified` entries here.
 * [Published-result reproducibility](/modern/published-result-reproducibility.md) - a peer-reviewed benchmark claim is an unverified hypothesis until reproduced at your scale (draft)
 * [Speculative-decoding concurrency dependence](/modern/speculative-decoding-concurrency.md) - draft-length tuning is a function of server load, not of the model (draft)
 * [Open-weight model-selection signals](/modern/open-weight-model-selection-signals.md) - likes vs downloads vs derivatives, and why frontier licences must be re-checked per release (draft)
+* [Eval-harness version provenance](/modern/eval-harness-version-provenance.md) - a benchmark score belongs to a harness version, config and judge, not to the model alone (draft)
+* [Library-upgrade silent behavior drift](/modern/library-upgrade-silent-behavior-drift.md) - the upgrade changes that cost you are the ones that do not raise; pin and re-baseline (draft)
+* [Determinism is a pipeline contract](/modern/determinism-is-a-pipeline-contract.md) - a batch-invariance flag constrains only what its implementers made invariant; verify, never infer (draft)
+* [Benchmark measurement layer](/modern/benchmark-measurement-layer.md) - locate the boundary a speedup was measured across before expecting it end to end (draft)
 
 # Domains
 
