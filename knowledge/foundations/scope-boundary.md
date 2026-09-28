@@ -60,5 +60,33 @@ only WITH THEIR TIER STATED (`Evidence: unverified`):
   the selection-and-licensing decision preceding that work, and the conflict is
   recorded inside the draft rather than resolved here.
 
+# Draft coverage (expedition weekly-2026-09-28 — unverified tier)
+
+Four further areas gained DRAFT concepts under [/modern/](/modern/), usable only
+WITH THEIR TIER STATED (`Evidence: unverified`):
+
+- **Eval-harness and scoring provenance** — that a benchmark score belongs to a
+  harness version, config and judge model rather than to the model alone
+  ([eval-harness version provenance](/modern/eval-harness-version-provenance.md)).
+  This sits beside, and does not alter, the stable
+  [evaluation protocol by size](/foundations/evaluation-protocol-by-size.md),
+  which governs how to split data rather than how to score it.
+- **Dependency-upgrade discipline** — previously uncovered; now one draft on the
+  upgrade changes that alter outputs without raising
+  ([library-upgrade silent behavior drift](/modern/library-upgrade-silent-behavior-drift.md)).
+- **Numerical determinism of the serving/training stack**
+  ([determinism is a pipeline contract](/modern/determinism-is-a-pipeline-contract.md)).
+  **The boundary above still governs:** this draft touches the reinforcement-learning
+  area listed as uncovered, because one of its sources is an RL post-training result.
+  RL *methodology* — algorithm choice, reward design, credit assignment — remains an
+  OUT-OF-SCOPE response. The draft covers only the numerical-reproducibility property
+  of the stack underneath such a loop, and the conflict is recorded inside the draft
+  rather than resolved here.
+- **Reading published performance claims** — locating the layer of the stack a
+  speedup was measured across before expecting it end to end
+  ([benchmark measurement layer](/modern/benchmark-measurement-layer.md)). This
+  extends the inference-serving draft coverage opened on 2026-08-17; inference
+  deployment more broadly remains uncovered.
+
 This concept has a deliberately short `stale_after`: every expedition that
 lands must revisit it and carve out what it now covers.
