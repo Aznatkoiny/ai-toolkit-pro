@@ -60,5 +60,42 @@ only WITH THEIR TIER STATED (`Evidence: unverified`):
   the selection-and-licensing decision preceding that work, and the conflict is
   recorded inside the draft rather than resolved here.
 
+# Draft coverage (expedition weekly-2026-10-05 — unverified tier)
+
+Three areas gained their first DRAFT concepts under [/modern/](/modern/), and
+one existing draft area was extended. All usable only WITH THEIR TIER STATED
+(`Evidence: unverified`):
+
+- **Agent and tool-harness reliability** — previously uncovered entirely. One
+  draft on the error text a tool returns to an agent as a tunable part of the
+  harness ([tool error text and agent recovery](/modern/tool-error-text-agent-recovery.md)).
+  Agent architecture more broadly — planning, memory, multi-agent decomposition —
+  remains uncovered.
+- **CUDA stream and memory management in training** — previously uncovered
+  entirely. One draft on cross-stream buffer lifetime
+  ([cross-stream buffer lifetime](/modern/cross-stream-buffer-lifetime.md)).
+  Distributed-training methodology more broadly remains uncovered.
+- **Non-generative classification via decision models**
+  ([decision models for typed choice](/modern/decision-models-typed-choice.md)).
+  **This draft does NOT displace the boundary or any stable concept.** The
+  stable Task Pairing concepts and the
+  [modality → architecture map](modality-architecture-map.md) route a
+  classification task for which you hold labelled training data; the draft
+  covers an alternative route for typed choice/score/boolean questions where
+  you do not. No source in the draft compares the two, so a request that fits
+  the stable concepts still gets the stable answer.
+- **Inference serving** — extends the draft coverage opened on 2026-08-17 with
+  prefill/decode disaggregation
+  ([disaggregated serving and goodput](/modern/disaggregated-serving-goodput.md)).
+  Inference deployment is now covered at draft tier on two axes, speculation and
+  disaggregation; it is still far from complete.
+
+A standing limitation worth recording here rather than only in the log: under
+the current network egress policy no expedition can verify an open-weight
+model's **licence**, because model cards are published only on a blocked host.
+Any advice derived from
+[open-weight model-selection signals](/modern/open-weight-model-selection-signals.md)
+must therefore treat licence terms as unverified until a human checks them.
+
 This concept has a deliberately short `stale_after`: every expedition that
 lands must revisit it and carve out what it now covers.

@@ -34,6 +34,10 @@ its plans derive from the `verified` entries here.
 * [Published-result reproducibility](/modern/published-result-reproducibility.md) - a peer-reviewed benchmark claim is an unverified hypothesis until reproduced at your scale (draft)
 * [Speculative-decoding concurrency dependence](/modern/speculative-decoding-concurrency.md) - draft-length tuning is a function of server load, not of the model (draft)
 * [Open-weight model-selection signals](/modern/open-weight-model-selection-signals.md) - likes vs downloads vs derivatives, and why frontier licences must be re-checked per release (draft)
+* [Tool error text and agent recovery](/modern/tool-error-text-agent-recovery.md) - error strings are a harness tunable; an unexecutable next step destroys recovery, filtering restores it (draft)
+* [Cross-stream buffer lifetime](/modern/cross-stream-buffer-lifetime.md) - keepalive + `wait_event` before `del`, not `record_stream`, to make peak memory a chosen quantity (draft)
+* [Disaggregated serving and goodput](/modern/disaggregated-serving-goodput.md) - prefill/decode splitting buys ITL tail and goodput, and charges every TTFT for the KV transfer (draft)
+* [Decision models for typed choice](/modern/decision-models-typed-choice.md) - non-generative `choice`/`score`/`noul` answers with per-option probabilities, and the three gates before relying on them (draft)
 
 # Domains
 
