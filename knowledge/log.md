@@ -1,5 +1,63 @@
 # Catalog update log
 
+## 2026-10-05
+
+* **Weekly expedition landed**: weekly-2026-10-05 — 4 draft concepts under
+  [/modern/](/modern/) (tool error text and agent recovery, cross-stream buffer
+  lifetime, disaggregated serving and goodput, decision models for typed
+  choice) from 4 primary sources dated 2026-09-28/29/30 and 2026-10-02/03, all
+  re-fetched and re-read during the skeptic pass. Three areas are newly covered
+  at draft tier: agent/tool-harness reliability, CUDA stream memory management,
+  and non-generative classification. [Scope boundary](/foundations/scope-boundary.md)
+  draft-coverage section updated.
+* **Skeptic pass dropped the week's headline causal claim.** The tool-error-text
+  source is titled "MCP Error Messages Written for Developers Hurt the Most
+  Capable Agents Most", but its own released per-model data gives overall
+  cause-only recovery rates of 0.597–0.647 across the five models tested, in
+  which the highest and lowest both belong to mid-penalty models — so the
+  0.181–0.694 penalty spread does not track any capability ordering derivable
+  from the artifact. The draft keeps the robust result (the penalty is large,
+  real and model-dependent) and records the capability framing as the authors'
+  unverified interpretation. Two further overstatements were corrected before
+  drafting: the decision-model probabilities are **not** calibrated (the source
+  says so explicitly), and the disaggregated-serving TTFT regression was
+  measured on a fabric that fails the post's own pre-flight gate.
+* **Three candidate findings were rejected for duplication, and that is now a
+  pattern worth a human decision.** 25 draft concepts sit unmerged across PRs
+  #1 and #3–#8; only the 2026-08-17 expedition has ever been merged. Roughly 15
+  of those 25 restate three meta-lessons — "a published number is unreliable",
+  "an upgrade silently changes defaults", and "it did not crash so you think it
+  worked". This week's release sweep (transformers v5.18.0's device-chosen flash
+  kernel, vLLM v0.31.0's removals, the PEFT/transformers version coupling) landed
+  squarely in those clusters and was dropped rather than written up. The
+  selection bar used is in the PR body.
+* **One in-flight draft is now contradicted by upstream.** vLLM v0.31.0
+  (2026-10-02) removed online quantization from `--quantization fp8`, which
+  bears directly on the unmerged draft `vllm-online-quantization` on PR #1. Not
+  edited here — it is not on this branch, and amending another expedition's
+  unmerged draft is outside this expedition's scope.
+* **Sweep coverage was partial, and the gaps are the same ones as 2026-08-17
+  plus two more.** The network egress policy again blocked `arxiv.org` and
+  `huggingface.co` outright, and also every lab engineering blog on its own
+  domain (`blog.vllm.ai`, `pytorch.org`, `keras.io`, `openai.com`, `ai.meta.com`,
+  Google/DeepMind). `WebFetch` is subject to the same policy; `WebSearch`
+  resolves server-side and was used for discovery only, never as evidence. The
+  sweep therefore ran entirely on `git` and `raw.githubusercontent.com` against
+  public repositories — which does reach the vLLM, Hugging Face and PyTorch blog
+  *sources*, plus release history. Two consequences to record: (a) the
+  `pytorch.org/blog` markdown is no longer in `pytorch/pytorch.github.io` and
+  could not be located in any reachable repository, so two in-window PyTorch
+  posts (a TLX jagged-flash-attention result and a Helion vLLM linear backend)
+  were seen in search results but deliberately not written up; (b) **no
+  open-weight licence could be verified at all**, because model cards live only
+  on the blocked host — which directly limits the catalog's
+  [open-weight model-selection signals](/modern/open-weight-model-selection-signals.md)
+  draft and is flagged inside the decision-models draft as its blocking item.
+* **Quiet in the places that are usually load-bearing**: `keras-team/keras` (no
+  release since v3.12.4, 2026-07-29), `huggingface/accelerate` (nothing since
+  v1.15.0), and `microsoft/qlib` — dormant, zero commits in the window, last
+  release still v0.9.7 of 2025-08-15.
+
 ## 2026-08-17
 
 * **Weekly expedition landed**: weekly-2026-08-17 — 3 draft concepts under
